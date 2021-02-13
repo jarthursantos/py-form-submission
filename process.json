@@ -1,0 +1,10 @@
+{
+  "name": "wsforms",
+  "script": "index.py",
+  "interpreter": "python",
+  "watch": ["data.xlsx", "forms.txt", "index.py"],
+  "ignore_watch" : ["results.txt"],
+  "watch_options": {
+    "followSymlinks": false
+  }
+}
