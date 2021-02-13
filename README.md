@@ -3,7 +3,6 @@ Submit form data, include reCAPTCHA using Selenium with Python
 
 ## Requirements 
 
-`pip3 install crontab`
 `pip3 install selenium`
 `pip3 install pandas`
 `pip3 install 2captcha-python`

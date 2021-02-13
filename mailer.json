@@ -1,0 +1,11 @@
+{
+  "name": "mailer",
+  "script": "mailer.py",
+  "interpreter": "/usr/bin/python3",
+  "cron": "0 0 * * *",
+  "watch": ["mailer.py"],
+  "ignore_watch" : ["results.txt"],
+  "watch_options": {
+    "followSymlinks": false
+  }
+}
