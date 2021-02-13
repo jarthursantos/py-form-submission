@@ -1,6 +1,16 @@
 #  System
 import email, ssl, smtplib, random, time, os
 
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.utils import COMMASPACE, formatdate
+
+mailer = smtplib.SMTP('smtp.gmail.com', port=587)
+mailer.starttls()
+
+mailer.login(os.getenv('SMTP_MAIL'), os.getenv('SMTP_PASS'))
+
 # CRON
 from crontab import CronTab
 
@@ -119,3 +129,19 @@ for url in urls:
 
 
 browser.quit()
+
+
+msg = MIMEMultipart()
+msg['From'] = os.getenv('SMTP_MAIL')
+msg['To'] = COMMASPACE.join('awe30some@gmail.com')
+msg['Date'] = formatdate(localtime=True)
+msg['Subject'] = 'Shop mail report'
+
+results = open('results.txt', 'rb')
+
+attachment = MIMEApplication(results.read())
+attachment['Content-Disposition'] = 'attachment; filename="results.txt"'
+
+msg.attach(attachment)
+
+mailer.sendmail(msg['From'], msg['To'], msg.as_string())
